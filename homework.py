@@ -43,8 +43,9 @@ def send_message(bot, message):
     try:
         bot.send_message(TELEGRAM_CHAT_ID, message)
         logger.info(f'Сообщение отправлено: {message}')
-    except SendMessageError:
-        raise SendMessageError(f'Сообщение не отправлено: {message}')
+    except Exception as error:
+        raise SendMessageError(f'Сообщение не отправлено: {message} \n'
+                               f'Ошибка: {error}')
 
 
 def get_api_answer(current_timestamp):
@@ -92,9 +93,7 @@ def parse_status(homework):
 
 def check_tokens():
     """Проверяется наличие необходимых переменных окружения."""
-    if all([PRACTICUM_TOKEN, TELEGRAM_TOKEN, TELEGRAM_CHAT_ID]):
-        return True
-    return False
+    return all([PRACTICUM_TOKEN, TELEGRAM_TOKEN, TELEGRAM_CHAT_ID])
 
 
 def main():
