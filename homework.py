@@ -87,7 +87,7 @@ def parse_status(homework):
         logger.debug(verdict)
         return f'Изменился статус проверки работы "{homework_name}". {verdict}'
     raise ParseMissStatusError(
-        f'Статус домашнеый работы : {homework_status}'
+        f'Статус домашней работы : {homework_status}'
         f'Отсутствует в списке статусов: {HOMEWORK_STATUSES}')
 
 
